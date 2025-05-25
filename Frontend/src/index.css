@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+    --default-font-family:"Montserrat",sans-serif;
+    --font-optical-sizing:auto;
+    --font-style:normal;
+    --font-family-myFont:"Dancing Script";
+
+
+    --color-secondary:#2B3A67;
+    /* text color */
+    --color-brown:#8E1616;
+    --color-CharcoalGray:#333333;
+    --color-softBlack:#1c1c1c;
+    --color-burgundy:#6b2d2d;
+    --color-sweetPink:#A53860;
+    --color-darkPink:#670D2F;
+
+    /* buttons color */
+    --color-Terracotta:#d97652;
+    --color-green:#7a8450;
+    --color-dustyrose:#c97d78;
+    --color-vintageBlue:#6a8d92;
+    --color-mustard:#d4a037;
+
+    /* For Soft Accents/Minimal Elements */
+    --color-MutedSage:#b6c0a3;
+    --color-dustyPink:#e8c9c5;
+    --color-taupe:#c8b8a9;
+    --color-plaeGray:#dad8d0;
+    --color-lightWhite:#FFFDF6;
+    
+}
+
+:root{
+    background:#FFF2EB;
+}
