@@ -1,90 +1,93 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import {HiBars3BottomRight,HiOutlineShoppingBag ,HiOutlineUser} from "react-icons/hi2";
-import Searchbar from "./Searchbar";
 import { useState } from "react";
+import { HiBars3BottomRight, HiOutlineShoppingBag, HiOutlineUser } from "react-icons/hi2";
+import {  IoMdClose } from "react-icons/io";
+import { Link } from "react-router-dom";
 import CartDrawer from "../Layout/CartDrawer";
+import Searchbar from "./Searchbar";
 
     const Navbar = () => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-
     const [cartDrawer,setCartDrawer] = useState(false)
+    const [navDrawerOpen,setNavDrawerOpen] = useState(false)
 
+    
     // toggle cart drawer function
     const toggleCartDrawer = ()=>{
         setCartDrawer(!cartDrawer)
     }
+
+    const toggleNaveDrawer = ()=>{
+        setNavDrawerOpen(!navDrawerOpen);
+    }
+
+    
+    
     return (
         <>
-        <nav className="container flex items-center justify-between mx-auto py-4 px-6">
+        <nav className="container flex items-center justify-between mx-auto py-4 px-6 sticky">
             {/* left logo */}
             <div>
             <Link
                 to="/"
-                className="font-[myFont] font-bold text-2xl   bg-gradient-to-r from-darkPink to-sweetPink text-transparent bg-clip-text uppercase"
+                className="font-[myFont] font-bold text-2xl   bg-gradient-to-r from-orange-500 to-red-500 text-transparent bg-clip-text uppercase"
             >
-                BellaBuy
+                DigiMart
             </Link>
             </div>
 
             {/* center navigation link */}
             <div className="hidden md:flex space-x-6 tracking-tight ">
-            {/* dropdown wrapper */}
-            {/* <div className="relative transition-all duration-300">
-                <button className="text-softBlack text-sm hover:text-black font-medium uppercase duration-300" onClick={()=>setDropdownOpen(!dropdownOpen)}>Electronics ▼</button>
-                {dropdownOpen && (
-                <div className='absolute top-8 left-0 w-48 bg-white shadow-lg border rounded-md z-50'>
-                <Link to="/mobiles" className='block px-4 py-2 text-sm hover:bg-gray-100'>Mobiles</Link>
-                <Link to="/laptops" className='block px-4 py-2 text-sm hover:bg-gray-100'>Laptops</Link>
-                <Link to="/accessories" className='block px-4 py-2 text-sm hover:bg-gray-100'>Accessories</Link>
-                </div>
-            )}
-            </div> */}
-            <Link
-                to="#"
-                className="text-gray-600 text-sm hover:text-black font-bold uppercase"
-            >
-                Electronics
-            </Link>
+            {/* Smartphones  */}
+            <div className="relative">
+                    <Link
+                    to=""
+                    className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
+                    >Smartphones</Link>
+            </div>
 
-            <Link
-                to="#"
-                className="text-gray-600 text-sm hover:text-black font-bold uppercase"
-            >
-                Fashion
-            </Link>
+            {/* Cameras   */}
+                    <div className="relative">
+                    <Link
+                    to=""
+                    className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide">Cameras </Link>
+                    </div>
 
-            <Link
-                to="#"
-                className="text-gray-600 text-sm hover:text-black font-bold uppercase"
-            >
-                Home & Kitchen
-            </Link>
+            {/* Headphones & Earbuds */}
+                    <div className="relative">
+                        <Link
+                        to=""
+                        className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
+                        >Headphones & Earbuds</Link>
+                    </div>
 
-            <Link
-                to="#"
-                className="text-gray-600 text-sm hover:text-black font-bold uppercase"
-            >
-                Books
-            </Link>
+            {/* Smartwatches  */}
+                    <div className="relative">
+                        <Link
+                        to=""
+                        className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
+                        >Smartwatches</Link>
+                    </div>
 
-            <Link
-                to="#"
-                className="text-gray-600 text-sm hover:text-black font-bold uppercase"
-            >
-                Beauty
-            </Link>
+            {/*Smart TVs  */}
+                    <div className="relative">
+                        <Link
+                        to=""
+                        className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
+                        >Laptop</Link>
+                    </div>
+
+
             </div>
 
             {/* right -icons */}
 
             <div className="flex items-center space-x-4">
-            <Link to="/profile" className="hover:text-black ">
-                <HiOutlineUser className="h-6 w-6 text-CharcoalGray" />
+            <Link to="/profile" className="text-orange-600 hover:text-red-600 ">
+                <HiOutlineUser className="h-6 w-6 " />
             </Link>
 
+                {/* cart drawer */}
             <button onClick={toggleCartDrawer} className="relative hover:text-black">
-                <HiOutlineShoppingBag className="h-6 w-6 text-CharcoalGray" />
+                <HiOutlineShoppingBag className="text-orange-600 hover:text-red-600 h-6 w-6" />
                 <span className="absolute -top-1 bg-burgundy text-white size-xs rounded-full px-2 py-0.5 text-xs">
                 4
                 </span>
@@ -94,14 +97,77 @@ import CartDrawer from "../Layout/CartDrawer";
             <Searchbar />
 
             {/* hamburger icon */}
-
-            <button className="md:hidden">
-                <HiBars3BottomRight className="h-6 w-6 text-CharcoalGray" />
+            <button onClick={toggleNaveDrawer} className="md:hidden">
+                <HiBars3BottomRight className="h-6 w-6 text-orange-600"/>
             </button>
             </div>
         </nav>
 
         <CartDrawer cartDrawer={cartDrawer} toggleCartDrawer={toggleCartDrawer} />
+
+
+        {/* mobile navigation */}
+        <div className={`sm:hidden fixed top-0 left-0 w-3/4 sm:w-1/2 md:w-1/3 h-full bg-lightWhite/80 backdrop-blur-lg shadow-lg transform transition-transform duration-300 z-50 ${navDrawerOpen ? "translate-x-0" : "-translate-x-full"}`}>
+                
+                <div className="flex justify-end p-4">
+                    <button onClick={toggleNaveDrawer}>
+                        <IoMdClose className="h-6 w-6 text-gray-500"/>
+                    </button>
+                </div>
+
+                <div className="p-4">
+                    {/* this is h2 menu tag */}
+                    <h2 className="text-xl font-semibold mb-4 bg-gradient-to-r from-orange-500 to-red-500 text-transparent bg-clip-text">Menu</h2>
+
+                {/* here starts the mobile drawer nav menu */}
+                <nav className="flex flex-col gap-3">
+                            
+                    
+                    {/* Smartphones  */}
+                    <div className="relative">
+                            <Link
+                            to=""
+                            className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter"
+                            >Smartphones</Link>
+                    </div>
+
+                    {/* Cameras  */}
+                            <div className="relative">
+                            <Link
+                            to=""
+                            className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter">Cameras</Link>
+                            </div>
+
+                    {/* Headphones & Earbuds */}
+                            <div className="relative">
+                                <Link
+                                to=""
+                                className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter"
+                                >Headphones & Earbuds</Link>
+                            </div>
+
+                    {/* Smartwatches  */}
+                            <div className="relative">
+                                <Link
+                                to=""
+                                className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter"
+                                >Smartwatches</Link>
+                            </div>
+
+                    {/*Smart TVs  */}
+                            <div className="relative">
+                                <Link
+                                to=""
+                                className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter"
+                                >Smart TVs</Link>
+                            </div>
+
+                    
+                </nav>
+
+                </div>
+                
+        </div>
         </>
     );
 };
