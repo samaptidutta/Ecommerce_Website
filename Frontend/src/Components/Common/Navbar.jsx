@@ -80,8 +80,8 @@ import Searchbar from "./Searchbar";
 
             {/* right -icons */}
 
-            <div className="flex items-center space-x-4">
-            <Link to="/profile" className="text-orange-600 hover:text-red-600 ">
+            <div className="flex items-center space-x-4 ">
+            <Link to="/login" className="text-orange-600 hover:text-red-600 ">
                 <HiOutlineUser className="h-6 w-6 " />
             </Link>
 
