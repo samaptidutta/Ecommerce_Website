@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Hero = () => {
     return (
-        <section className='p-4 relative'>
+        <section className='p-4 relative pt-[144px]'>
             
 
                 <img src="https://img.freepik.com/premium-photo/online-shopping-with-laptop-computer-concept-hand-hold-smartphone-laptop-online-shopping-showing-payment-details-ecommerce-shop-ecommerce-website-with-smartphone-shopping-cart-online_162459-3744.jpg" alt="camera"  className=' w-full h-[400px] md:h-[600px] lg:h-[720px] object-cover rounded-lg'/>

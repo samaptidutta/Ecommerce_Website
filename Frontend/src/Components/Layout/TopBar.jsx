@@ -5,7 +5,7 @@ import {RiTwitterXLine} from 'react-icons/ri'
 
 const TopBar = () => {
     return (
-        <div className='bg-stone-900 text-orange-600'>
+        <div className='bg-stone-900 text-orange-600 fixed top-0 left-0 w-full z-50'>
             <div className='container mx-auto flex justify-between items-center py-3 px-4'>
                 {/* anchor tag for icon */}
                 <div className='hidden md:flex items-center space-x-4'>

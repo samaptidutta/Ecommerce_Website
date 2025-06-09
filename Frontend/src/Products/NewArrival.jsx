@@ -132,21 +132,12 @@ const NewArrival = () => {
 
         if(container){
             const leftScroll = container.scrollLeft;
-
-            // const rightScroll = container.scrollWidth > leftScroll +  container.clientWidth
             const rightScroll = container.scrollWidth - container.scrollLeft - container.clientWidth > 1;
 
             setCanScrollLeft(leftScroll>0);
             setCanScrollRight(rightScroll)
         }
 
-        console.log({
-            scrollLeft:container.scrollLeft,
-            clientWidth: container.clientWidth,
-            scrollWidth: container.scrollWidth,
-            scrollRef: scrollRef.current.offsetLeft
-
-        })
     }
 
 
@@ -164,7 +155,7 @@ const NewArrival = () => {
 
     return (
         <section className='py-16 px-4 lg:px-0'>
-            <div className='container mx-auto text-center mb-10 relative'>
+            <div className='container mx-auto text-center mb-10 relative bg-stone-800'>
 
                 <h2 className='text-3xl font-bold mb-4 text-red-500'>New Arrivals, Some Great Deals !</h2>
                 <p className='text-lg text-orange-600 mb-8'>Discover the newest must-haves in tech,Upgrade your setup with our freshest picks.</p>

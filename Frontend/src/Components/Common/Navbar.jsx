@@ -23,7 +23,7 @@ import Searchbar from "./Searchbar";
     
     return (
         <>
-        <nav className="container flex items-center justify-between mx-auto py-4 px-6 sticky">
+        <nav className="flex items-center justify-between mx-auto py-4 px-6 fixed top-[44px] left-0 right-0 z-40 bg-neutral-800/50 backdrop-blur-2xl shadow-lg">
             {/* left logo */}
             <div>
             <Link

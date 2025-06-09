@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import  {toast} from 'react-toastify'
+import ProductGridDetails from './ProductGridDetails'
 
 const ProductDetails = () => {
 
@@ -24,8 +26,77 @@ const ProductDetails = () => {
     ]
     }
 
+    // you may like this part
+    const similarProduct =[
+        {
+            _id:1,
+            name:"product 1",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=10",altTest:"product 1"}]
+        },
+        {
+            _id:2,
+            name:"product 2",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=19",altTest:"product 1"}]
+        },
+        {
+            _id:3,
+            name:"product 3",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=18",altTest:"product 1"}]
+        },
+        {
+            _id:4,
+            name:"product 4",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=17",altTest:"product 1"}]
+        },
+        {
+            _id:5,
+            name:"product 5",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=16",altTest:"product 1"}]
+        },
+        {
+            _id:6,
+            name:"product 6",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=15",altTest:"product 1"}]
+        },
+        {
+            _id:7,
+            name:"product 7",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=12",altTest:"product 1"}]
+        },
+        {
+            _id:8,
+            name:"product 8",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=2",altTest:"product 1"}]
+        },
+        {
+            _id:9,
+            name:"product 9",
+            price: 100,
+            images:[{url:"https://picsum.photos/500/500?random=1",altTest:"product 1"}]
+        }
+    ]
 
     const [mainImg,setMainImg] = useState("")
+    const [isButtonDisabled,setIsButtonDisabled] = useState(false)
+
+    const handleAddToCart=()=>{
+        setIsButtonDisabled(true)
+        setTimeout(()=>{
+            toast.success("Product added to cart",{
+                duration:1000
+            })
+            setIsButtonDisabled(false)
+        },500)
+        
+    }
 
     useEffect(()=>{
         if(selectedProduct ?.images?.length>0){
@@ -37,6 +108,7 @@ const ProductDetails = () => {
     return (
         <section className='p-6'>
             <div className='max-w-6xl mx-auto bg-stone-900 p-8 rounded-lg'>
+                {/* best seller */}
                 <div className='flex flex-col md:flex-row'>
                     {/* left thumbnails */}
                     <div className='hidden md:flex flex-col space-y-4 mr-6'>
@@ -53,7 +125,7 @@ const ProductDetails = () => {
                     {/* Main image */}
                     <div className='md:w-1/2'>
                         <div className='mb-4'>
-                            <img src={mainImg}  alt="main product" 
+                            <img src={mainImg || 'https://images.unsplash.com/photo-1554050857-c84a8abdb5e2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww'}  alt="main product" 
                             className='w-full h-auto object-cover rounded-lg'
                             />
                         </div>
@@ -99,10 +171,19 @@ const ProductDetails = () => {
                         </div>
 
                         {/* add to cart button */}
-                        <button className='bg-neutral-700 text-yellow-500 py-2 px-6 w-full mb-4 rounded-lg font-semibold cursor-pointer'>ADD TO CART</button>
+                        <button onClick={handleAddToCart} 
+                        disabled={isButtonDisabled}
+                        className={`bg-neutral-700 text-yellow-500 py-2 px-6 w-full mb-4 rounded-lg font-semibold cursor-pointer ${isButtonDisabled ? "cursor-not-allowed opacity-50" : "hover:bg-orange-800"} `}>
+                            {isButtonDisabled ? "Adding..." : "ADD TO CART"}
+                        </button>
                     </div>
                 </div>
             </div>
+            {/* you may like  */}
+            <div className='mt-20'>
+                    <h2 className='text-2xl text-center font-semibold mb-4 bg-gradient-to-r from-pink-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent'>You May Also Like</h2>
+                    <ProductGridDetails product={similarProduct}/>
+                </div>
         </section>
     )
 }
