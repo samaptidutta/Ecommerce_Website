@@ -6,6 +6,11 @@ import { ToastContainer } from 'react-toastify';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Profile from './Pages/Profile';
+import SmartPhone from './Pages/Collections/SmartPhone';
+import Cameras from './Pages/Collections/Cameras';
+import Headphones from './Pages/Collections/Headphones';
+import SmartWatch from './Pages/Collections/SmartWatch';
+import Laptop from './Pages/Collections/Laptop';
 
 const App = () => {
   return (
@@ -19,6 +24,11 @@ const App = () => {
         <Route path="login" element={<Login/>}/>
         <Route path="register" element={<Register/>}/>
         <Route path="profile" element={<Profile/>}/>
+        <Route path="smartphone" element={<SmartPhone/>}/>
+        <Route path="camera" element={<Cameras/>} />
+        <Route path='headphone' element={<Headphones/>} />
+        <Route path='watch' element={<SmartWatch/>} />
+        <Route path='tv' element={<Laptop/>} />
 
       </Route>
       

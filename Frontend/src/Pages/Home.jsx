@@ -1,8 +1,8 @@
 import React from 'react'
 import Hero from '../Components/Layout/Hero'
-import Electronics from '../Products/ElectronicsCollection'
-import NewArrival from '../Products/NewArrival'
-import ProductDetails from '../Products/ProductDetails'
+import Electronics from '../Components/Products/ElectronicsCollection'
+import NewArrival from '../Components/Products/NewArrival'
+import ProductDetails from '../Components/Products/ProductDetails'
 import WhyShopWithUs from '../Components/Common/WhyShopWithUs'
 
 const Home = () => {

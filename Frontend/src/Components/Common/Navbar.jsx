@@ -39,7 +39,7 @@ import Searchbar from "./Searchbar";
             {/* Smartphones  */}
             <div className="relative">
                     <Link
-                    to=""
+                    to="smartphone"
                     className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
                     >Smartphones</Link>
             </div>
@@ -47,14 +47,14 @@ import Searchbar from "./Searchbar";
             {/* Cameras   */}
                     <div className="relative">
                     <Link
-                    to=""
+                    to="camera"
                     className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide">Cameras </Link>
                     </div>
 
             {/* Headphones & Earbuds */}
                     <div className="relative">
                         <Link
-                        to=""
+                        to="headphone"
                         className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
                         >Headphones & Earbuds</Link>
                     </div>
@@ -62,15 +62,15 @@ import Searchbar from "./Searchbar";
             {/* Smartwatches  */}
                     <div className="relative">
                         <Link
-                        to=""
+                        to="watch"
                         className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
                         >Smartwatches</Link>
                     </div>
 
-            {/*Smart TVs  */}
+            {/*Laptop */}
                     <div className="relative">
                         <Link
-                        to=""
+                        to="tv"
                         className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
                         >Laptop</Link>
                     </div>
@@ -81,7 +81,7 @@ import Searchbar from "./Searchbar";
             {/* right -icons */}
 
             <div className="flex items-center space-x-4 ">
-            <Link to="/login" className="text-orange-600 hover:text-red-600 ">
+            <Link to="/profile" className="text-orange-600 hover:text-red-600 ">
                 <HiOutlineUser className="h-6 w-6 " />
             </Link>
 
@@ -126,7 +126,7 @@ import Searchbar from "./Searchbar";
                     {/* Smartphones  */}
                     <div className="relative">
                             <Link
-                            to=""
+                            to="smartphone"
                             className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter"
                             >Smartphones</Link>
                     </div>
@@ -134,14 +134,14 @@ import Searchbar from "./Searchbar";
                     {/* Cameras  */}
                             <div className="relative">
                             <Link
-                            to=""
+                            to="camera"
                             className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter">Cameras</Link>
                             </div>
 
                     {/* Headphones & Earbuds */}
                             <div className="relative">
                                 <Link
-                                to=""
+                                to="headphone"
                                 className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter"
                                 >Headphones & Earbuds</Link>
                             </div>
@@ -149,17 +149,17 @@ import Searchbar from "./Searchbar";
                     {/* Smartwatches  */}
                             <div className="relative">
                                 <Link
-                                to=""
+                                to="watch"
                                 className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter"
                                 >Smartwatches</Link>
                             </div>
 
-                    {/*Smart TVs  */}
+                    {/*Laptop */}
                             <div className="relative">
                                 <Link
-                                to=""
+                                to="tv"
                                 className="flex items-center text-orange-600 text-sm hover:text-black font-bold uppercase tracking-tighter"
-                                >Smart TVs</Link>
+                                >Laptop</Link>
                             </div>
 
                     

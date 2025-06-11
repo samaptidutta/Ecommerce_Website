@@ -14,7 +14,7 @@ const SmartPhones = () => {
                         <img src="https://jamesandco.in/wp-content/uploads/2024/12/samsung-5-1.png" alt="smartphone" class="hover:scale-125 duration-1000"/>
                     </div>
                     <h2 className='text-2xl font-bold text-orange-600 mb-3'>Smart Phones Collections</h2>
-                    <Link to="#" className='text-white underline'>Shop Now</Link>
+                    <Link to="smartphone" className='text-white underline'>Shop Now</Link>
             
                 </div>
 

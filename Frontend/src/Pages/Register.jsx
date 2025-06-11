@@ -2,17 +2,19 @@ import React , {useState} from "react";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name,setName] = useState("");
+        const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("");
+        const [fName,setFname] = useState("");
+        const [lName,setLname] = useState("");
 
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-    console.log("user register " , {name,email,password});
-    setEmail("")
-    setPassword("")
-    setName("")
-  }
+        const handleSubmit = (e)=>{
+            e.preventDefault();
+            console.log("user register " , {fName,lName,email,password});
+            setEmail("")
+            setPassword("")
+            setFname("")
+            setLname("")
+        }
 
     return (
         <div className="mt-[145px] flex">
@@ -29,16 +31,30 @@ const Register = () => {
             </p>
             {/* name */}
             <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                Name
+                <label htmlFor="fname" className="block text-sm font-semibold mb-2">
+                First Name
                 </label>
                 <input
                 type="text"
-                value={name}
-                id="email"
-                onChange={(e) => setName(e.target.value)}
+                value={fName}
+                id="fname"
+                onChange={(e) => setFname(e.target.value)}
                 className="w-full p-2 border rounded"
-                placeholder="enter your name"
+                placeholder="enter your first name"
+                />
+            </div>
+
+            <div className="mb-4">
+                <label htmlFor="lname" className="block text-sm font-semibold mb-2">
+                Last Name
+                </label>
+                <input
+                type="text"
+                value={lName}
+                id="lname"
+                onChange={(e) => setLname(e.target.value)}
+                className="w-full p-2 border rounded"
+                placeholder="enter your Last name"
                 />
             </div>
 
