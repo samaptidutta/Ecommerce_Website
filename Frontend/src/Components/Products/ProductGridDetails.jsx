@@ -13,7 +13,7 @@ const ProductGridDetails = ({product}) => {
                             />
                         </div>
                         <h3 className='text-small mb-2 text-orange-500'>{item.name}</h3>
-                        <p className='text-red-600 font-medium tracking-tighter'>&#8377;{item.price}</p>
+                        <p className='text-red-600 font-medium tracking-tighter'>${item.price}</p>
                     </div>
                 </Link>
             ))}
