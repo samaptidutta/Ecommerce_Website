@@ -8,7 +8,7 @@ import  {Link} from 'react-router-dom';
 
         const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log("user register " , {name,email,password});
+        console.log("user register " , {email,password});
             setEmail("")
         setPassword("")
     

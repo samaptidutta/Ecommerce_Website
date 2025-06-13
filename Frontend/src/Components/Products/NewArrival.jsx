@@ -189,7 +189,7 @@ const NewArrival = () => {
                         />
 
                         <div className='absolute bottom-0 left-0 right-0 bg-opacity-50 backdrop-blur-md text-yellow-200 p-1 text-center rounded-b-lg font-semibold'>
-                            <Link to={`/item/${item._id}`} className="block">
+                            <Link to={`/product/${item._id}`} className="block">
                                 <h4>{item.name}</h4>
                                 <p>₹{item.price}</p>
                             

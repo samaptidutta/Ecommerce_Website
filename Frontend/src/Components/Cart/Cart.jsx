@@ -52,13 +52,20 @@ const Cart = () => {
 
                         {/* product price */}
                         <div>
-                            <p className='text-lg text-gray-200 mb-1 line-through'>{item.originalPrice.toLocaleString('en-IN', {style: 'currency',currency: 'INR'}
-                            )}</p>
-                            <p className='flex  gap-2 text-gray-200'>{item.reducePrice.toLocaleString('en-IN', {style: 'currency',currency: 'INR'}
-                            )}
-                            
+                            <p className='text-lg text-gray-200 mb-1 line-through'>
+                                {item.originalPrice.toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD'
+                                })}
+                            </p>
+                            <p className='flex gap-2 text-gray-200'>
+                                {item.reducePrice.toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD'
+                                })}
+
                                 <button>
-                                    <RiDeleteBin3Line className='h-6 w-6 ml-2 text-red-600 cursor-pointer'/>
+                                    <RiDeleteBin3Line className='h-6 w-6 ml-2 text-red-600 cursor-pointer' />
                                 </button>
                             </p>
                         </div>

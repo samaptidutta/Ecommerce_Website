@@ -47,7 +47,7 @@ const MyOrders = () => {
     }
 
     return (
-        <div className='max-w-7xl mx-auto px-4 py-6'>
+        <div className='mt-[140px] max-w-7xl mx-auto px-4 py-6'>
             <h2 className='text-xl sm:text-2xl font-bold mb-6 text-orange-600'>My Orders</h2>
             <div className='overflow-x-auto rounded-lg shadow-md'>
                 <table className='min-w-full text-sm sm:text-base text-left text-orange-500'>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import  {toast} from 'react-toastify'
 import ProductGridDetails from './ProductGridDetails'
 
-const ProductDetails = () => {
+const AllProductslink = () => {
 
     const selectedProduct ={
         name:"Samsung Galaxy M05 (Mint Green, 4GB RAM, 64 GB Storage)",
@@ -106,7 +106,7 @@ const ProductDetails = () => {
 
 
     return (
-        <section className='p-6 '>
+        <section className='p-6 mt-[140px]'>
             <div className='max-w-6xl mx-auto bg-stone-900 p-8 rounded-lg'>
                 {/* best seller */}
                 <div className='flex flex-col md:flex-row '>
@@ -188,6 +188,6 @@ const ProductDetails = () => {
     )
 }
 
-export default ProductDetails
+export default AllProductslink
 
 
