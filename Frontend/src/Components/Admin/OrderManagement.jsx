@@ -10,7 +10,7 @@ const OrderManagement = () => {
                 name:"Pratik Mukharjee"
             },
             totalPrice:110,
-            status : "processing"
+            status : "Processing"
         }
     ]
 
@@ -45,7 +45,7 @@ const OrderManagement = () => {
                                     <td className="p-4">{item.user.name}</td>
                                     <td className="p-4">₹{item.totalPrice}</td>
                                     <td className="p-4">
-                                        <select name="" id="" value={item.status} onChange={(e) =>handleStatusChange(item._id,e.target.value)} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5'>
+                                        <select name={item.name} id="" value={item.status} onChange={(e) =>handleStatusChange(item._id,e.target.value)} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5'>
                                             <option value="Processing">Processing</option>
                                             <option value="Shipped">Shipped</option>
                                             <option value="Delivered">Delivered</option>
@@ -55,7 +55,7 @@ const OrderManagement = () => {
                                     <td className="p-4">{item.user.name}</td>
 
                                     <td className="p-4">
-                                        <button onClick={handleStatusChange(item._id,"Delivered")} className='bg-green-500 text-white px-4 py-2 rounded hover:green-600'>Mark as Delivered</button>
+                                        <button onClick={()=> handleStatusChange(item._id,"Delivered")} className='bg-green-500 text-white px-4 py-2 rounded hover:green-600'>Mark as Delivered</button>
                                     </td>
                                 </tr>
                             ))

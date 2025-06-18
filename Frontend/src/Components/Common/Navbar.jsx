@@ -4,10 +4,14 @@ import {  IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import CartDrawer from "../Layout/CartDrawer";
 import Searchbar from "./Searchbar";
+import { useSelector } from "react-redux";
 
     const Navbar = () => {
     const [cartDrawer,setCartDrawer] = useState(false)
     const [navDrawerOpen,setNavDrawerOpen] = useState(false)
+    const {cart} = useSelector((state) => state.cart)
+
+    const cartItemCount = cart?.products?.reduce((total,product) =>total + product.quantity,0) || 0
 
     
     // toggle cart drawer function
@@ -39,42 +43,12 @@ import Searchbar from "./Searchbar";
             {/* Smartphones  */}
             <div className="relative">
                     <Link
-                    to="smartphone"
+                    to="electronics"
                     className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
-                    >Smartphones</Link>
+                    >All Electronics Products</Link>
             </div>
 
-            {/* Cameras   */}
-                    <div className="relative">
-                    <Link
-                    to="camera"
-                    className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide">Cameras </Link>
-                    </div>
-
-            {/* Headphones & Earbuds */}
-                    <div className="relative">
-                        <Link
-                        to="headphone"
-                        className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
-                        >Headphones & Earbuds</Link>
-                    </div>
-
-            {/* Smartwatches  */}
-                    <div className="relative">
-                        <Link
-                        to="watch"
-                        className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
-                        >Smartwatches</Link>
-                    </div>
-
-            {/*Laptop */}
-                    <div className="relative">
-                        <Link
-                        to="tv"
-                        className="flex items-center text-orange-500 text-sm hover:text-red-500 font-bold uppercase tracking-wide"
-                        >Laptop</Link>
-                    </div>
-
+            
 
             </div>
 
@@ -91,9 +65,12 @@ import Searchbar from "./Searchbar";
                 {/* cart drawer */}
             <button onClick={toggleCartDrawer} className="relative hover:text-black">
                 <HiOutlineShoppingBag className="text-orange-600 hover:text-red-600 h-6 w-6" />
-                <span className="absolute -top-1 bg-burgundy text-white size-xs rounded-full px-2 py-0.5 text-xs">
-                4
+                {cartItemCount >0 && (
+                    <span className="absolute -top-1 bg-burgundy text-white size-xs rounded-full px-2 py-0.5 text-xs">
+                {cartItemCount}
                 </span>
+                )}
+                
             </button>
 
             {/* search icon */}

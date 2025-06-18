@@ -1,19 +1,21 @@
 import React , {useState} from "react";
 import { Link } from "react-router-dom";
+import { registerUser } from "../redux/slice/authSlice";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
-        const [fName,setFname] = useState("");
-        const [lName,setLname] = useState("");
+        const [name,setName] = useState("");
+        const dispatch = useDispatch();
+        
 
         const handleSubmit = (e)=>{
             e.preventDefault();
-            console.log("user register " , {fName,lName,email,password});
+            dispatch(registerUser({name, email, password}))
             setEmail("")
             setPassword("")
-            setFname("")
-            setLname("")
+            setName("")
         }
 
     return (
@@ -32,31 +34,18 @@ const Register = () => {
             {/* name */}
             <div className="mb-4">
                 <label htmlFor="fname" className="block text-sm font-semibold mb-2">
-                First Name
+                    Name
                 </label>
                 <input
                 type="text"
-                value={fName}
+                value={name}
                 id="fname"
-                onChange={(e) => setFname(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full p-2 border rounded"
                 placeholder="enter your first name"
                 />
             </div>
 
-            <div className="mb-4">
-                <label htmlFor="lname" className="block text-sm font-semibold mb-2">
-                Last Name
-                </label>
-                <input
-                type="text"
-                value={lName}
-                id="lname"
-                onChange={(e) => setLname(e.target.value)}
-                className="w-full p-2 border rounded"
-                placeholder="enter your Last name"
-                />
-            </div>
 
             {/* email */}
             <div className="mb-4">

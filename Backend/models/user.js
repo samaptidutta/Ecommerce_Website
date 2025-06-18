@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
         role:{
             type:String,
             enum:["customer","admin"],
-            default:"customer"
+            default:"admin"
         },
     },
     {timestamps: true}
@@ -42,4 +42,6 @@ userSchema.pre('save',async function (next) {
 userSchema.methods.matchPassword = async function(enteredPassword){
     return await bcrypt.compare(enteredPassword, this.password);
 };
+
+
 module.exports = mongoose.model("User", userSchema)

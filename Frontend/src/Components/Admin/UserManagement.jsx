@@ -5,8 +5,8 @@ const UserManagement = () => {
     const user = [
         {
             _id:123,
-            name : "Pratik Mukharjee",
-            email:"pratik@example.com",
+            name : "John Doe",
+            email:"john@example.com",
             role:"admin"
         }
     ]

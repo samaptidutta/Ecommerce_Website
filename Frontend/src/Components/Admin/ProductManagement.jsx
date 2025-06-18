@@ -40,7 +40,7 @@ const ProductManagement = () => {
                                         {item.name}
                                     </td>
 
-                                    <td className="p-4">₹{item.price}</td>
+                                    <td className="p-4">${item.price}</td>
                                     <td className="p-4">{item.sku}</td>
                                     <td className="p-4">
                                         <Link to={`/admin/products/${item._id}/edit`} className='bg-yellow-500 text-white px-2 py-1 rounded mr-2 hover:bg-yellow-600'>

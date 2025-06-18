@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import PaypalButton from './PaypalButton';
 
+
 const cartItems = [
     {
         productId: "1",

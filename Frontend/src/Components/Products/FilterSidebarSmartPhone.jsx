@@ -1,193 +1,87 @@
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { FaFilter } from 'react-icons/fa';
+import FilterSidebarSmartPhone from '../../Components/Products/FilterSidebarSmartPhone';
+import ProductGridDetails from '../../Components/Products/ProductGridDetails';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductsByFilters } from '../../redux/slice/productSlice';
 
-const FilterSidebarSmartPhone = ({ onFilterChange }) => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [priceRange, setPriceRange] = useState([0, 1000]); // Adjusted max for smartphones
+const AllElectronics = () => {
+  const { collection } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const { products, loading, error } = useSelector((state) => state.product);
+  const queryParams = Object.fromEntries([...searchParams]);
 
-    const [filters, setFilters] = useState({
-        brand: '',
-        rating: '',
-        availability: '',
-        discount: '',
-        releaseYear: '',
-        minPrice: 0,
-        maxPrice: 1000,
-    });
+  // Fetch products when collection or query parameters change
+  useEffect(() => {
+    dispatch(fetchProductsByFilters({ collection, ...queryParams }));
+  }, [dispatch, collection, searchParams]);
 
-    const brands = ['Samsung', 'Apple', 'Xiaomi', 'Realme', 'OnePlus'];
-    const ratings = ['4', '3', '2'];
-    const availabilities = ['In Stock', 'Pre-order'];
-    const discounts = ['10', '20'];
-    const releaseYears = ['2023 or newer', '2022', '2021 or older'];
+  const sidebarRef = useRef(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    useEffect(() => {
-        const params = Object.fromEntries([...searchParams]);
-        setFilters({
-        brand: params.brand || '',
-        rating: params.rating || '',
-        availability: params.availability || '',
-        discount: params.discount || '',
-        releaseYear: params.releaseYear || '',
-        minPrice: Number(params.minPrice) || 0,
-        maxPrice: Number(params.maxPrice) || 1000,
-        });
-        setPriceRange([Number(params.minPrice) || 0, Number(params.maxPrice) || 1000]);
-    }, [searchParams]);
+  // Toggle sidebar for mobile
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
-    const handleFilterChange = (e) => {
-        const { name, value } = e.target;
-        const newFilters = { ...filters, [name]: value };
-        setFilters(newFilters);
-        updateURLParams(newFilters);
-        onFilterChange(newFilters); // Notify parent component
+  // Close sidebar when clicking outside
+  const handleClickOutside = (e) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+      setIsSidebarOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
     };
+  }, []);
 
-    const handlePriceChange = (e) => {
-        const newMaxPrice = Number(e.target.value);
-        setPriceRange([filters.minPrice, newMaxPrice]);
-        const newFilters = { ...filters, maxPrice: newMaxPrice };
-        setFilters(newFilters);
-        updateURLParams(newFilters);
-        onFilterChange(newFilters); // Notify parent component
-    };
+  // Handle filter changes from FilterSidebarSmartPhone
+  const handleFilterChange = (newFilters) => {
+    setSearchParams(newFilters, { replace: true });
+    setIsSidebarOpen(false); // Close sidebar on mobile after applying filters
+  };
 
-    const updateURLParams = (newFilters) => {
-        const params = new URLSearchParams();
-        Object.entries(newFilters).forEach(([key, value]) => {
-        if (value || value === 0) params.set(key, value);
-        });
-        setSearchParams(params, { replace: true });
-    };
+  return (
+    <div className="mt-[140px] flex flex-col lg:flex-row">
+      {/* Mobile filter button */}
+      <button
+        onClick={toggleSidebar}
+        className="lg:hidden border border-neutral-600 shadow-md p-2 flex justify-center items-center bg-stone-700"
+      >
+        <FaFilter className="mr-2 text-gray-300" />
+        <span className="text-gray-300">Filters</span>
+      </button>
 
-    return (
-        <div className="p-4">
-        <h3 className="text-xl font-medium text-orange-600 mb-4">Filter</h3>
+      {/* Filter sidebar */}
+      <div
+        ref={sidebarRef}
+        className={`${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } fixed mt-[100px] lg:mt-[0px] inset-y-0 z-30 left-0 w-64 bg-neutral-800 overflow-y-auto transition-transform duration-300 lg:sticky lg:translate-x-0`}
+      >
+        <FilterSidebarSmartPhone onFilterChange={handleFilterChange} />
+      </div>
 
-        {/* Brand */}
-        <div className="mb-6">
-            <label className="block text-orange-600 font-medium mb-2">Brand</label>
-            {brands.map((item) => (
-            <div key={item} className="flex items-center mb-1">
-                <input
-                type="radio"
-                name="brand"
-                id={`brand-${item}`}
-                value={item}
-                onChange={handleFilterChange}
-                checked={filters.brand === item}
-                className="mr-2 h-4 w-4 text-yellow-500 focus:ring-blue-400 border-gray-300"
-                />
-                <label htmlFor={`brand-${item}`} className="text-gray-200">
-                {item}
-                </label>
-            </div>
-            ))}
-        </div>
+      {/* Product grid */}
+      <div className="flex-grow p-4">
+        <h2 className="text-2xl uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-700 font-semibold">
+          {collection ? `${collection} Collection` : 'All Collection'}
+        </h2>
 
-        {/* Customer Rating */}
-        <div className="mb-6">
-            <label className="block text-orange-600 font-medium mb-2">Customer Rating</label>
-            {ratings.map((item) => (
-            <div key={item} className="flex items-center mb-1">
-                <input
-                type="radio"
-                name="rating"
-                id={`rating-${item}`}
-                value={item}
-                onChange={handleFilterChange}
-                checked={filters.rating === item}
-                className="mr-2 h-4 w-4 text-yellow-500 focus:ring-blue-400 border-gray-300"
-                />
-                <label htmlFor={`rating-${item}`} className="text-gray-200">
-                {item} Stars & Up
-                </label>
-            </div>
-            ))}
-        </div>
-
-        {/* Availability */}
-        <div className="mb-6">
-            <label className="block text-orange-600 font-medium mb-2">Availability</label>
-            {availabilities.map((item) => (
-            <div key={item} className="flex items-center mb-1">
-                <input
-                type="radio"
-                name="availability"
-                id={`availability-${item}`}
-                value={item}
-                onChange={handleFilterChange}
-                checked={filters.availability === item}
-                className="mr-2 h-4 w-4 text-yellow-500 focus:ring-blue-400 border-gray-300"
-                />
-                <label htmlFor={`availability-${item}`} className="text-gray-200">
-                {item}
-                </label>
-            </div>
-            ))}
-        </div>
-
-        {/* Discount */}
-        <div className="mb-6">
-            <label className="block text-orange-600 font-medium mb-2">Discount</label>
-            {discounts.map((item) => (
-            <div key={item} className="flex items-center mb-1">
-                <input
-                type="radio"
-                name="discount"
-                id={`discount-${item}`}
-                value={item}
-                onChange={handleFilterChange}
-                checked={filters.discount === item}
-                className="mr-2 h-4 w-4 text-yellow-500 focus:ring-blue-400 border-gray-300"
-                />
-                <label htmlFor={`discount-${item}`} className="text-gray-200">
-                {item}% Off or More
-                </label>
-            </div>
-            ))}
-        </div>
-
-        {/* Release Year */}
-        <div className="mb-6">
-            <label className="block text-orange-600 font-medium mb-2">Release Year</label>
-            {releaseYears.map((item) => (
-            <div key={item} className="flex items-center mb-1">
-                <input
-                type="radio"
-                name="releaseYear"
-                id={`releaseYear-${item}`}
-                value={item}
-                onChange={handleFilterChange}
-                checked={filters.releaseYear === item}
-                className="mr-2 h-4 w-4 text-yellow-500 focus:ring-blue-400 border-gray-300"
-                />
-                <label htmlFor={`releaseYear-${item}`} className="text-gray-200">
-                {item}
-                </label>
-            </div>
-            ))}
-        </div>
-
-        {/* Price Range */}
-        <div className="mb-8">
-            <label className="block text-orange-600 font-medium mb-2">Price Range</label>
-            <input
-            type="range"
-            name="maxPrice"
-            min={0}
-            max={2000} // Adjusted for smartphone price range
-            onChange={handlePriceChange}
-            value={priceRange[1]}
-            className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
-            />
-            <div className="flex justify-between text-gray-600 mt-2">
-            <span className="text-red-400">${priceRange[0]}</span>
-            <span className="text-red-400">${priceRange[1]}</span>
-            </div>
-        </div>
-        </div>
-    );
+        {loading && <div className="text-center text-gray-500">Loading products...</div>}
+        {error && <div className="text-center text-red-500">Error: {error}</div>}
+        {!loading && !error && products.length === 0 && (
+          <div className="text-center text-gray-500">No products found.</div>
+        )}
+        <ProductGridDetails products={products} loading={loading} error={error} />
+      </div>
+    </div>
+  );
 };
 
-export default FilterSidebarSmartPhone;
+export default AllElectronics;

@@ -1,24 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
 
-const ProductGridDetails = ({product}) => {
-    return (
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 bg-stone-900'>
-            {product.map((item,ind)=>(
-                <Link key={ind} to={`/item/${item._id}`} className='block'>
-                    <div className='p-4 rounded-lg'>
-                        <div className='w-full h-96 mb-4'>
-                            <img src={item.images[0].url} alt={item.images[0].altText|| item.name} 
-                            className='w-full h-full object-cover rounded-lg'
-                            />
-                        </div>
-                        <h3 className='text-small mb-2 text-orange-500'>{item.name}</h3>
-                        <p className='text-red-600 font-medium tracking-tighter'>${item.price}</p>
-                    </div>
-                </Link>
-            ))}
+const ProductGridDetails = ({ product }) => {
+  console.log("ProductGridDetails products:", product);
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      {product?.map((item) => (
+        <div key={item._id} className="p-4 border rounded">
+          <img
+            src={item.images?.[0]?.url || "https://via.placeholder.com/150"}
+            alt={item.images?.[0]?.altText || item.name}
+            className="w-full h-32 object-cover rounded-lg"
+          />
+          <h3 className="text-lg font-semibold">{item.name}</h3>
+          <p>${item.reducePrice || item.price}</p>
         </div>
-    )
-}
+      ))}
+    </div>
+  );
+};
 
-export default ProductGridDetails
+export default ProductGridDetails;
